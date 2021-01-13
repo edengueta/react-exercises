@@ -2,6 +2,32 @@ import React, { Component } from 'react';
 import './Timer.scss';
 
 class Timer extends Component {
+	constructor (props){
+		super(props);
+		this.state = {
+			timerValue:0,
+		}
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.startInterval);
+	}
+	play(){
+		this.startInterval = setInterval(()=>{
+			this.setState({
+				timerValue: this.state.timerValue + 1,
+			})
+		}, 1000)
+	}
+	pause(){
+		this.componentWillUnmount();	
+	}
+	reset(){
+		this.componentWillUnmount();
+		this.setState({
+			timerValue:0,
+		 })
+	}
 
 	render() {
 		return (
@@ -13,11 +39,11 @@ class Timer extends Component {
 					<li><b>Reset:</b> should set the timer to 0</li>
 				</ul>
 				<div className="Timer__actions">
-					<button>Play</button>
-					<button>Pause</button>
-					<button>Reset</button>
+					<button onClick={this.play.bind(this)}>Play</button>
+					<button onClick={this.pause.bind(this)}>Pause</button>
+					<button onClick={this.reset.bind(this)}>Reset</button>
 				</div>
-				<div className="Timer__value">0</div>
+				<div className="Timer__value">{this.state.timerValue}</div>
 			</div>
 		)
 	}

@@ -1,17 +1,18 @@
 .YayValidator {
-  text-align: center;
-
-  &__sample {
-    color: green;
-  }
-
-  .text-box {
-    margin-top: 15px;
-    padding: 5px;
-    font-size: 16px;
-    font-weight: 500;
-    border: 2px solid #333333;
-    outline: none;
-  }
-
+    text-align: center;
+    &__sample {
+        color: green;
+    }
+    .text-box {
+        margin-top: 15px;
+        padding: 5px;
+        font-size: 16px;
+        font-weight: 500;
+        border: 2px solid #333333;
+        outline: none;
+    }
+    .green {
+        margin-top: 15px;
+        background-color: rgb(48, 216, 48);
+    }
 }

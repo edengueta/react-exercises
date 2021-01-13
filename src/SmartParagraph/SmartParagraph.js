@@ -6,11 +6,25 @@ class SmartParagraph extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			limit: false,
+			buttonText: 'Read Less',
 			text: 'I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system and expound the actual teachings of great explorers.'
 		};
 	}
-
+	toggle(){
+		this.setState({
+			limit: !this.state.limit,
+			buttonText: !this.state.limit ? 'Read More' : 'Read Less',
+		})
+	}
+	limitText(text) {
+		let i;
+		for (i=99; text[i] !==" "; i--);
+		return text.slice(0, i);
+	}
 	render() {
+		const isLimit = this.state.limit;
+		const textToDisplay =this.state.text;
 		return (
 			<div className="SmartParagraph">
 				<p className="SmartParagraph__explanation">
@@ -20,9 +34,9 @@ class SmartParagraph extends Component {
 					Clicking again should show all of the text back.
 				</p>
 				<p className="SmartParagraph__value">
-					{this.state.text}
+					{isLimit ? this.limitText(textToDisplay.slice(0, 100)) + '...' : textToDisplay }
 				</p>
-				<button>Toggle</button>
+				<button onClick={this.toggle.bind(this)}>{this.state.buttonText}</button>
 			</div>
 		)
 	}
